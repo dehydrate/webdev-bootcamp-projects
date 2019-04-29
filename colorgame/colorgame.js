@@ -1,5 +1,5 @@
-var NUM_SQUARES = 6;
-colors = generateColors(NUM_SQUARES);
+var num_squares = 6;
+colors = generateColors(num_squares);
 var squares = document.querySelectorAll(".square");
 var picked = pickColor();
 var color_display = document.querySelector("#color_display");
@@ -18,9 +18,9 @@ for (var i = 0; i < modes.length; i++) {
 		modes[1].classList.remove("selected");
 		this.classList.add("selected");
 		if (this.textContent === "Easy")
-			NUM_SQUARES = 3;
+			num_squares = 3;
 		else
-			NUM_SQUARES = 6;
+			num_squares = 6;
 		reset();
 	});
 }
@@ -28,7 +28,7 @@ for (var i = 0; i < modes.length; i++) {
 
 function reset() {
 	messageDisplay.textContent = "";
-	colors = generateColors(NUM_SQUARES);
+	colors = generateColors(num_squares);
 	picked = pickColor();
 	color_display.textContent = picked;
 	initSquares();
