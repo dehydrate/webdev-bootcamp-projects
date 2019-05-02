@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Circles</title>
+<link rel="stylesheet" type="text/css" href="assets/css/circles.css">
+<script type="text/javascript" src="assets/js/lib/paper-full.js"></script>
+<script type="text/javascript" src="assets/js/lib/howler.core.js"></script>
+<!-- Script below only uses one sound from the sound folder for demonstration -->
+<script type="text/paperscript" canvas="myCanvas">
+
+	var sound = new Howl({
+		src: ['assets/sounds/bubbles.mp3'],
+		html5: true
+	});
+
+	circles = [];
+
+	function onKeyDown(event) {
+		var x = Math.floor(Math.random()*view.size.width);
+		var y = Math.floor(Math.random()*view.size.height);
+		var center = new Point(x, y);
+		var radius = 600 - Math.floor(Math.random()*400);
+		var circle = new Path.Circle(center, radius);
+		var color = 'rgb('
+			+Math.floor(Math.random()*255)+', '
+			+Math.floor(Math.random()*255)+', '
+			+Math.floor(Math.random()*255)+')'
+		circle.fillColor = color;
+		circles.push(circle);
+		sound.play();
+	}
+
+	function onFrame() {
+		for (var i = 0; i < circles.length; i++) {
+			circles[i].fillColor.hue += 1;
+			circles[i].scale(0.92);
+			if (circles[i].length < 1)
+				circles.splice(i, 1);
+		}
+	}
+</script>
+</head>
+<body>
+	<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
